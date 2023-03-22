@@ -9,6 +9,8 @@ import 'my_drawer.dart';
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
+  static const id = 'task_screen';
+
   @override
   State<TasksScreen> createState() => _TasksScreenState();
 }

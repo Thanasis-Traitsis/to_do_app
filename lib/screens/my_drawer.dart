@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/screens/recycle_bin.dart';
+import 'package:to_do_app/screens/tasks_screen.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
@@ -15,16 +17,22 @@ class MyDrawer extends StatelessWidget {
               color: Colors.grey,
               child: Text('Task Drawer', style: Theme.of(context).textTheme.headlineSmall,),
             ),
-            const ListTile(
-              leading: Icon(Icons.folder_special),
-              title: Text('My Tasks'),
-              trailing: Text('0'),
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(TasksScreen.id),
+              child: const ListTile(
+                leading: Icon(Icons.folder_special),
+                title: Text('My Tasks'),
+                trailing: Text('0'),
+              ),
             ),
             const Divider(),
-            const ListTile(
-              leading: Icon(Icons.delete),
-              title: Text('Bin'),
-              trailing: Text('0'),
+            GestureDetector(
+              onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
+              child: const ListTile(
+                leading: Icon(Icons.delete),
+                title: Text('Bin'),
+                trailing: Text('0'),
+              ),
             ),
           ],
         ),
