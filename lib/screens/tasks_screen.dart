@@ -4,6 +4,7 @@ import '../blocs/bloc_exports.dart';
 import '../models/task.dart';
 import '../widgets/tasks_list.dart';
 import 'add_task_screen.dart';
+import 'my_drawer.dart';
 
 class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -41,13 +42,14 @@ class _TasksScreenState extends State<TasksScreen> {
               )
             ],
           ),
+          drawer: const MyDrawer(),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
+              Center(
                 child: Chip(
                   label: Text(
-                    'Tasks:',
+                    '${state.allTasks.length} Tasks :',
                   ),
                 ),
               ),
