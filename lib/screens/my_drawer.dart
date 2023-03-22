@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/screens/recycle_bin.dart';
 import 'package:to_do_app/screens/tasks_screen.dart';
 
+import '../blocs/bloc_exports.dart';
+
 class MyDrawer extends StatelessWidget {
   const MyDrawer({super.key});
 
@@ -15,24 +17,35 @@ class MyDrawer extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
               color: Colors.grey,
-              child: Text('Task Drawer', style: Theme.of(context).textTheme.headlineSmall,),
-            ),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(TasksScreen.id),
-              child: const ListTile(
-                leading: Icon(Icons.folder_special),
-                title: Text('My Tasks'),
-                trailing: Text('0'),
+              child: Text(
+                'Task Drawer',
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
+            ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushReplacementNamed(TasksScreen.id),
+                  child: ListTile(
+                    leading: const Icon(Icons.folder_special),
+                    title: const Text('My Tasks'),
+                    trailing: Text('${state.allTasks.length}'),
+                  ),
+                );
+              },
             ),
             const Divider(),
-            GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(RecycleBin.id),
-              child: const ListTile(
-                leading: Icon(Icons.delete),
-                title: Text('Bin'),
-                trailing: Text('0'),
-              ),
+            BlocBuilder<TasksBloc, TasksState>(
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () => Navigator.of(context).pushReplacementNamed(RecycleBin.id),
+                  child: ListTile(
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Bin'),
+                    trailing: Text('${state.removedTasks.length}'),
+                  ),
+                );
+              },
             ),
           ],
         ),

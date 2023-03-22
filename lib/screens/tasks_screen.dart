@@ -41,7 +41,7 @@ class _TasksScreenState extends State<TasksScreen> {
               IconButton(
                 onPressed: () => _addTask(context),
                 icon: const Icon(Icons.add),
-              )
+              ),
             ],
           ),
           drawer: const MyDrawer(),
@@ -51,7 +51,7 @@ class _TasksScreenState extends State<TasksScreen> {
               Center(
                 child: Chip(
                   label: Text(
-                    '${state.allTasks.length} Tasks :',
+                    '${state.allTasks.length} Tasks',
                   ),
                 ),
               ),
